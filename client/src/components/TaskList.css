@@ -1,0 +1,47 @@
+.task-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 1rem;
+  text-align: left;
+}
+
+.task-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px;
+  border-radius: 8px;
+  background-color: #fff;
+  font-size: 1rem;
+}
+
+.task-item button {
+  padding: 6px 12px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.task-item span.completed {
+  text-decoration: line-through;
+  color: gray;
+}
+
+.task-item.personalhealth {
+  background-color: #fff9c4;
+}
+
+.task-item.study {
+  background-color: #f8bbd0;
+}
+
+.task-item.work {
+  background-color: #bbdefb;
+}
+
+.task-item.leisure {
+  background-color: #c8e6c9;
+}
