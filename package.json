@@ -1,0 +1,14 @@
+{
+  "name": "gamified-todo-tracker",
+  "version": "1.0.0",
+  "description": "A gamified todo tracker application",
+  "private": true,
+  "scripts": {
+    "build": "cd client && npm run build",
+    "start": "cd client && npm start",
+    "install-deps": "cd client && npm install"
+  },
+  "workspaces": [
+    "client"
+  ]
+} 
