@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 const TaskInput = ({ onAddTask, defaultDay }) => {
   const [task, setTask] = useState("");
   const [category, setCategory] = useState("Personal/Health");
-  // Remove day state and dropdown
 
   const handleAdd = () => {
     if (task.trim() === "") return;

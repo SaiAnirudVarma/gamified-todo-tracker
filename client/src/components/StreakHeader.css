@@ -1,28 +1,40 @@
 .streak-header {
   display: flex;
   justify-content: center;
-  flex-wrap: wrap;
+  align-items: center;
   margin: 20px 0;
-  gap: 10px;
+  gap: 8px;
 }
 
 .day-button {
-  background-color: #f0f0f0;
-  border: 2px solid #aaa;
-  border-radius: 5px;
-  padding: 8px 12px;
+  background-color: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 8px;
+  padding: 10px 16px;
   cursor: pointer;
-  font-weight: bold;
-  transition: background-color 0.3s ease, color 0.3s;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+  min-width: 50px;
+  text-align: center;
+  color: #6c757d;
 }
 
 .day-button.selected {
   background-color: #28a745;
   color: #fff;
   border-color: #28a745;
-  font-weight: bold;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(40, 167, 69, 0.3);
 }
 
 .day-button:hover {
-  background-color: #d4edda;
+  background-color: #e9ecef;
+  border-color: #28a745;
+  color: #28a745;
+}
+
+.day-button.selected:hover {
+  background-color: #218838;
+  color: #fff;
 }

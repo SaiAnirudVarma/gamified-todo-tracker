@@ -20,7 +20,7 @@ const ScoreBoard = ({ percent = 0, xp = 0 }) => {
     }
     requestRef.current && cancelAnimationFrame(requestRef.current);
     requestRef.current = requestAnimationFrame(animate);
-    return () => cancelAnimationFrame(requestRef.current);
+    return () => requestRef.current && cancelAnimationFrame(requestRef.current);
     // eslint-disable-next-line
   }, [percent]);
 
@@ -28,24 +28,25 @@ const ScoreBoard = ({ percent = 0, xp = 0 }) => {
   return (
     <div className="scoreboard">
       <div className="circle-progress">
-        <svg width="100" height="100">
-          <circle cx="50" cy="50" r="40" stroke="#ddd" strokeWidth="10" fill="none" />
+        <svg width="120" height="120" style={{ position: 'relative' }}>
+          <circle cx="60" cy="60" r="50" stroke="#e9ecef" strokeWidth="8" fill="none" />
           <circle
-            cx="50"
-            cy="50"
-            r="40"
-            stroke="#4CAF50"
-            strokeWidth="10"
+            cx="60"
+            cy="60"
+            r="50"
+            stroke="#28a745"
+            strokeWidth="8"
             fill="none"
-            strokeDasharray="251.2"
-            strokeDashoffset={251.2 - (251.2 * percentage / 100)}
+            strokeDasharray="314.16"
+            strokeDashoffset={314.16 - (314.16 * percentage / 100)}
             strokeLinecap="round"
-            transform="rotate(-90 50 50)"
+            transform="rotate(-90 60 60)"
             style={{ transition: 'stroke-dashoffset 0.6s ease' }}
           />
         </svg>
-        <div className="xp-label">{Math.round(percentage)}%</div>
-        <div className="xp-label">{xp} XP</div>
+        <div className="xp-center">
+          <div className="xp-value">{xp} XP</div>
+        </div>
       </div>
     </div>
   );
