@@ -1,10 +1,11 @@
 // src/components/HabitHero.js
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Header from './Header';
 import StreakHeader from './StreakHeader';
 import ScoreBoard from './ScoreBoard';
 import TaskInput from './TaskInput';
 import TaskList from './TaskList';
+import confetti from 'canvas-confetti';
 
 const getToday = () => {
   const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
@@ -15,6 +16,7 @@ function HabitHero({ user, onLogout }) {
   const [tasks, setTasks] = useState([]);
   const [score, setScore] = useState(0);
   const [selectedDay, setSelectedDay] = useState(getToday());
+  const hasCelebratedRef = useRef(false);
 
   // Load tasks from localStorage on mount
   useEffect(() => {
@@ -41,6 +43,7 @@ function HabitHero({ user, onLogout }) {
       completed: false,
     };
     setTasks([...tasks, task]);
+    hasCelebratedRef.current = false; // adding a task resets celebration
   };
 
   const onCompleteTask = (index) => {
@@ -73,6 +76,30 @@ function HabitHero({ user, onLogout }) {
   const completedCount = filteredTasks.filter(t => t.completed).length;
   const percentComplete = filteredTasks.length === 0 ? 0 : Math.round((completedCount / filteredTasks.length) * 100);
   const dayXP = filteredTasks.filter(t => t.completed).length * 10;
+
+  // Celebrate when transitioning to 100%
+  useEffect(() => {
+    if (filteredTasks.length > 0 && completedCount === filteredTasks.length && !hasCelebratedRef.current) {
+      hasCelebratedRef.current = true;
+      const duration = 1200;
+      const end = Date.now() + duration;
+      (function frame() {
+        confetti({
+          particleCount: 7,
+          startVelocity: 35,
+          spread: 360,
+          ticks: 60,
+          origin: { x: Math.random(), y: Math.random() - 0.2 }
+        });
+        if (Date.now() < end) requestAnimationFrame(frame);
+      })();
+    }
+  }, [completedCount, filteredTasks.length]);
+
+  // Reset celebration flag when day changes
+  useEffect(() => {
+    hasCelebratedRef.current = false;
+  }, [selectedDay]);
 
   return (
     <div className="habit-hero-wrapper">
