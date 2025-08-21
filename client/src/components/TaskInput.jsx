@@ -1,44 +1,38 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from "react";
 
-const TaskInput = ({ onAddTask }) => {
-  const [text, setText] = useState('');
-  const [category, setCategory] = useState('Personal/Health');
+const TaskInput = ({ onAddTask, defaultDay }) => {
+  const [task, setTask] = useState("");
+  const [category, setCategory] = useState("Personal/Health");
+  // Remove day state and dropdown
 
   const handleAdd = () => {
-    if (!text.trim()) return;
-
-    const task = {
-      id: Date.now(),
-      text: text.trim(),
-      category,
-      completed: false,
-    };
-
-    onAddTask(task);
-    setText('');
-    setCategory('Personal/Health');
+    if (task.trim() === "") return;
+    onAddTask({ text: task, category, day: defaultDay });
+    setTask("");
   };
 
   return (
-    <div style={{ marginBottom: '20px' }}>
+    <div className="task-input-container">
       <input
         type="text"
-        value={text}
         placeholder="Enter task..."
-        onChange={(e) => setText(e.target.value)}
-        style={{ padding: '6px', width: '50%' }}
+        value={task}
+        onChange={(e) => setTask(e.target.value)}
+        className="task-input-field"
       />
       <select
         value={category}
         onChange={(e) => setCategory(e.target.value)}
-        style={{ padding: '6px', marginLeft: '10px' }}
+        className="task-input-select"
       >
         <option value="Personal/Health">Personal/Health</option>
-        <option value="Study">Study</option>
-        <option value="Work">Work</option>
-        <option value="Leisure">Leisure</option>
+        <option value="Work/Study">Work/Study</option>
+        <option value="Hobbies">Hobbies</option>
       </select>
-      <button onClick={handleAdd} style={{ marginLeft: '10px', padding: '6px 12px' }}>
+      <button
+        onClick={handleAdd}
+        className="task-input-btn"
+      >
         Add Task
       </button>
     </div>

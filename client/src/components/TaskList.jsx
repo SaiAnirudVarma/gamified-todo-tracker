@@ -1,19 +1,34 @@
-import React from 'react';
-import './TaskList.css';
+import React from "react";
 
-function TaskList({ tasks, onComplete, onUndo }) {
+const getCategoryColor = (category) => {
+  switch (category) {
+    case "Personal/Health":
+      return "#fff9c4"; // yellowish
+    case "Work/Study":
+      return "#bbdefb"; // blueish
+    case "Hobbies":
+      return "#ffe0b2"; // orangish
+    default:
+      return "#f8f9fa"; // default light gray
+  }
+};
+
+const TaskList = ({ tasks = [], onCompleteTask = () => {} }) => {
   return (
-    <div className="task-list">
-      {tasks.map(task => (
+    <div className="task-list-container">
+      {tasks.map((task, index) => (
         <div
-          key={task.id}
-          className={`task-item ${task.category.toLowerCase().replace('/', '').replace(/\s/g, '')}`}
+          key={index}
+          className={`task-card${task.completed ? ' completed' : ''}`}
+          style={{ background: getCategoryColor(task.category) }}
         >
-          <span className={task.completed ? 'completed' : ''}>
-            {task.text} <em>{task.category}</em>
-          </span>
+          <div className="task-left">
+            <span className="task-text">{task.completed ? <s>{task.text}</s> : task.text}</span>
+            <span className={`task-category-badge ${task.category.replace(/\W/g, '').toLowerCase()}`}>{task.category}</span>
+          </div>
           <button
-            onClick={() => task.completed ? onUndo(task.id) : onComplete(task.id)}
+            className={`task-action-btn${task.completed ? ' undo' : ' complete'}`}
+            onClick={() => onCompleteTask(index)}
           >
             {task.completed ? 'Undo (-10 XP)' : 'Complete (+10 XP)'}
           </button>
@@ -21,6 +36,6 @@ function TaskList({ tasks, onComplete, onUndo }) {
       ))}
     </div>
   );
-}
+};
 
 export default TaskList;

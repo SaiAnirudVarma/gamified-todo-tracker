@@ -1,23 +1,20 @@
-import React from 'react';
+import React from "react";
+import "./StreakHeader.css";
 
-const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
 
-const StreakHeader = ({ selectedDay, setSelectedDay, scores }) => {
+const StreakHeader = ({ streak, selectedDay, setSelectedDay }) => {
   return (
     <div className="streak-header">
-      {days.map((day) => {
-        const score = scores[day] || 0;
-        const isActive = selectedDay === day;
-        return (
-          <div
-            key={day}
-            className={`day ${isActive ? 'active' : ''} ${score >= 70 ? 'success' : ''}`}
-            onClick={() => setSelectedDay(day)}
-          >
-            {day.slice(0, 3)}
-          </div>
-        );
-      })}
+      {days.map((day) => (
+        <button
+          key={day}
+          className={`day-button${selectedDay === day ? ' selected' : ''}`}
+          onClick={() => setSelectedDay(day)}
+        >
+          {day}: {streak[day] || 0}
+        </button>
+      ))}
     </div>
   );
 };

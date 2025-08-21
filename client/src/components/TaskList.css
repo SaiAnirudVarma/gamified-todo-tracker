@@ -1,47 +1,118 @@
+/* src/components/TaskList.css */
 .task-list {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin-top: 1rem;
-  text-align: left;
+  list-style: none;
+  padding: 0;
+  margin: 20px;
 }
 
-.task-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 12px;
-  border-radius: 8px;
-  background-color: #fff;
-  font-size: 1rem;
-}
-
-.task-item button {
-  padding: 6px 12px;
-  background-color: #4caf50;
-  color: white;
-  border: none;
-  border-radius: 6px;
+.task-list li {
   cursor: pointer;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
 }
 
-.task-item span.completed {
+.task-list li.completed {
   text-decoration: line-through;
   color: gray;
 }
 
-.task-item.personalhealth {
-  background-color: #fff9c4;
+.circle {
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  border: 2px solid #000;
+  margin-right: 10px;
+  display: inline-block;
+  text-align: center;
+  font-weight: bold;
 }
 
-.task-item.study {
-  background-color: #f8bbd0;
+.task-list-container {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  max-height: 320px;
+  overflow-y: auto;
 }
 
-.task-item.work {
-  background-color: #bbdefb;
+.task-card {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  background: #f8f9fa;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  padding: 12px 20px;
+  font-size: 1.1rem;
+  font-weight: 500;
+  box-shadow: 0 2px 8px rgba(44, 62, 80, 0.04);
+  transition: background 0.2s;
+  width: 100%;
+  border: 1px solid #e0e0e0;
 }
 
-.task-item.leisure {
-  background-color: #c8e6c9;
+.task-card.completed {
+  background: #e9ecef;
+  color: #888;
+}
+
+.task-left {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+}
+
+.task-text {
+  font-weight: bold;
+}
+
+.task-category-badge {
+  display: inline-block;
+  padding: 2px 12px;
+  border-radius: 12px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  margin-left: 8px;
+  background: #eee;
+  color: #444;
+}
+
+.task-category-badge.personalhealth {
+  background: #fffde7;
+  color: #bfa600;
+}
+.task-category-badge.workstudy {
+  background: #e3f2fd;
+  color: #1976d2;
+}
+.task-category-badge.hobbies {
+  background: #fff3e0;
+  color: #e65100;
+}
+
+.task-action-btn {
+  border: none;
+  border-radius: 8px;
+  padding: 8px 18px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.task-action-btn.complete {
+  background: #28a745;
+  color: #fff;
+}
+
+.task-action-btn.undo {
+  background: #bdbdbd;
+  color: #fff;
 }
