@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 const TaskInput = ({ onAddTask, defaultDay }) => {
   const [task, setTask] = useState("");
-  const [category, setCategory] = useState("Personal/Health");
+  const [category, setCategory] = useState("Work/Study");
 
   const handleAdd = () => {
     if (task.trim() === "") return;
@@ -24,8 +24,8 @@ const TaskInput = ({ onAddTask, defaultDay }) => {
         onChange={(e) => setCategory(e.target.value)}
         className="task-input-select"
       >
+        <option value="Work/Study">Work</option>
         <option value="Personal/Health">Personal/Health</option>
-        <option value="Work/Study">Work/Study</option>
         <option value="Hobbies">Hobbies</option>
       </select>
       <button
