@@ -25,6 +25,8 @@ const TaskList = ({ tasks = [], onCompleteTask = () => {} }) => {
         >
           <div className="task-left">
             <span className="task-text">{task.completed ? <s>{task.text}</s> : task.text}</span>
+          </div>
+          <div className="task-category-container">
             <span className={`task-category-badge ${task.category.replace(/\W/g, '').toLowerCase()}`}>{task.category}</span>
           </div>
           <button
